@@ -2,30 +2,31 @@
   <div id="app">
     <app-header></app-header>
     <div class="container">
-      <router-view></router-view>      
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-  import Home from './components/Home'
-  import Header from './components/Header'
+import Home from "./components/Home";
+import Header from "./components/Header";
 
-  export default {
-    name: 'App',
-    data() {
-      return {
-
-      }
-    },
-    components: {
-      'appHeader': Header,
-    }
+export default {
+  name: "App",
+  data() {
+    return {};
+  },
+  components: {
+    appHeader: Header
+  },
+  created() {
+    this.$store.dispatch('initStocks');
   }
+};
 </script>
 
 <style>
-  a {
-   outline: 0;
-  }
+a {
+  outline: 0;
+}
 </style>

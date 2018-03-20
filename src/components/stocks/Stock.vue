@@ -2,14 +2,14 @@
     <div class="col-sm-6 col-md-4 tile">
       <div class="card">
         <div class="card-header">
-          {{name}} <small>(Price: {{price}})</small>
+          {{stock.name}} <small>(Price: {{stock.price}})</small>
         </div>
         <div class="card-body">
           <div class="float-left">
-            <input type="number" class="form-control" placeholder="Quantity">
+            <input type="number" class="form-control" placeholder="Quantity" v-model="quantity">
           </div>
           <div class="float-right">
-            <button class="btn btn-success">
+            <button class="btn btn-success" @click="buyStock" :disabled="quantity <= 0 || Number.isInteger(quantity)">
               Buy
             </button>
           </div>
@@ -20,12 +20,27 @@
 
 <script>
 export default {
-  props: ['price', 'name']
-}
+  props: ["stock"],
+  data() {
+    return {
+      quantity: 0
+    };
+  },
+  methods: {
+    buyStock() {
+      const order = {
+        stockId: this.stock.id,
+        stockPrice: this.stock.price,
+        quantity: this.quantity
+      };
+      console.log(order);
+    }
+  }
+};
 </script>
 
 <style scoped>
-  .tile {
-    padding: 10px;
-  }
+.tile {
+  padding: 10px;
+}
 </style>
