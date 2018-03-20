@@ -23,13 +23,19 @@
             </div>
           </li>
         </ul>
+        
       </div>
+      <strong class="navbar-text navbar-right">Funds: {{ funds }}</strong>
     </nav>
   </div>
 </template>
 
 <script>
 export default {
-  
-}
+  computed: {
+    funds() {
+      return this.$store.getters.funds;
+    }
+  }
+};
 </script>
